@@ -30,7 +30,7 @@
  }
 
  define('PAGA_CHECKOUT_MAIN_FILE', __FILE__);
- define('PAGA_CHECKOUT_URL', untrailingslashit(plugin_url('/', __FILE__)));
+//  define('PAGA_CHECKOUT_URL', untrailingslashit(plugins_url('/', __FILE__)));
  define('PAGA_CHECKOUT_VERSION', '1.0.0');
 
  /**
@@ -49,13 +49,13 @@
     add_action('admin_notices', 'paga_checkout_testmode_notice');
     require_once dirname(__FILE__) . '/includes/class-paga-checkout.php';
 
-    add_filter('woocommerce_payment_gateways', 'add_paga_checkout_gateway');
+    add_filter('woocommerce_payment_gateways', 'add_paga_checkout_gateway',99);
     add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'paga_checkout_plugin_action_links');
 
     
   }
 
-  add_action('plugins_loaded', 'wc_paga_checkout_init');
+  add_action('plugins_loaded', 'wc_paga_checkout_init',99);
 
 
 
@@ -70,7 +70,8 @@
    function paga_checkout_plugin_action_links($links)
    {
        $settings_link = array(
-           'settings' => '<a href="' .admin_url( 'admin.php?page=wc-settings&tab=checkout&section=pagacheckout') .'" title="' . __('Paga Checkout Woo Commerce Settings', 'paga-checkout').'">' . __( 'Settings', 'paga-checkout') . '</a>',
+        //    'settings' => '<a href="' .admin_url( 'admin.php?page=wc-settings&tab=checkout&section=pagacheckout') .'" title="' . __('Paga Checkout Woo Commerce Settings', 'paga-checkout').'">' . __( 'Settings', 'paga-checkout') . '</a>',
+        'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=WC_Paga_Checkout' ) . '" title="' . __( 'View Paystack WooCommerce Settings', 'woo-paystack' ) . '">' . __( 'Settings', 'woo-paystack' ) . '</a>',
        );
 
        return array_merge($settings_link, $links);
