@@ -33,9 +33,13 @@
 //  define('PAGA_CHECKOUT_URL', untrailingslashit(plugins_url('/', __FILE__)));
  define('PAGA_CHECKOUT_VERSION', '1.0.0');
 
- /**
-  * Initialize PagaCheckout WooCommerce payment gateway
-  */
+/**
+ * Initialize PagaCheckout WooCommerce payment gateway
+ * 
+ * @version 1.0.0
+ * @since 1.0.0
+ * @access public
+ */
 
   function wc_paga_checkout_init()
   {
@@ -47,10 +51,17 @@
     }
     
     add_action('admin_notices', 'paga_checkout_testmode_notice');
+
+    //Functions
     require_once dirname(__FILE__) . '/includes/class-paga-checkout.php';
 
+    //Settings
     add_filter('woocommerce_payment_gateways', 'add_paga_checkout_gateway',99);
+
+    //Action links
     add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'paga_checkout_plugin_action_links');
+
+
 
     
   }
@@ -58,10 +69,14 @@
   add_action('plugins_loaded', 'wc_paga_checkout_init',99);
 
 
+ 
+
 
   /**
    * Add Settings link to the plugin entry in the plugins menu
    * 
+   * @version 1.0.0
+   * @since 1.0.0
    * @param array $links Plugin action links.
    * 
    * @return array
@@ -78,14 +93,20 @@
    }
 
    
-   /**
-    * Add Paga Checkout to WooCommerce
-    * @param array $methods WooCommerce payment gateways methods
-    * @return array
-    */
+
+ 
+     /**
+     * Add Paga Checkout to WooCommerce
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param array $methods WooCommerce payment gateways methods
+     * @return array
+     */
 
     function add_paga_checkout_gateway($methods)
     {
+
        if (class_exists('WC_Payment_Gateway') && 'NGN' === get_woocommerce_currency()) {
            $methods[] = 'WC_Paga_Checkout';
            $settings = get_option('paga_checkout_settings', '');
@@ -96,19 +117,19 @@
       
     }
 
-    /**
-     * Display notice if WooCommerce is not installed
-     */
+  
 
      function paga_checkout_missing_notice()
      {
          echo '<div class="error"><p><strong>' . sprintf(__('Paga Checkout requires WooCommerce to be installed and active. Click %s to install WooCommerce.','paga-checkout' ),'<a href="' .admin_url('plugin-install-php?tab=plugin-information&plugin=woocommerce&TB_iframe=true&width=772&height=539') .'" class="thickbox open-plugin-details-modal">here</a>') .'</strong></p></div>';
      }
 
-     /**
-      * Display the test mode notice
-      */
-
+    /**
+     * Display the test mode notice
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     */
       function paga_checkout_testmode_notice()
       {
           $paga_checkout_setting = get_option('paga_checkout_settings');
