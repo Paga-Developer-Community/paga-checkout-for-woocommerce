@@ -30,7 +30,6 @@
  }
 
  define('PAGA_CHECKOUT_MAIN_FILE', __FILE__);
-//  define('PAGA_CHECKOUT_URL', untrailingslashit(plugins_url('/', __FILE__)));
  define('PAGA_CHECKOUT_VERSION', '1.0.0');
 
 /**

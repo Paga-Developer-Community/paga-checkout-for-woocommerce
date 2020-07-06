@@ -49,6 +49,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
     /**
      * Constructor
+     * @version 1.0.0
+     * @since 1.0.0
      */
     function __construct() 
     {
@@ -79,8 +81,6 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
         $this->display_image_url=$this->get_option('display_image_url');
         $this->display_tagline=$this->get_option('display_tagline');
 
-        // $this->payment_page = $this->get_option('payment_page');
-
         $this->test_public_key = $this->get_option('test_public_key');
         $this->test_secret_key = $this->get_option('test_secret_key');
 
@@ -90,9 +90,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
         $this->public_key = $this->testmode ? $this->test_public_key : $this->live_public_key;
         $this->secret_key = $this->testmode ? $this->test_secret_key : $this->live_secret_key;
         $this->charge_url = wc_get_page_permalink('shop');
-        // $this->order_list = get_items();
+
         //Hooks
-        // add_action('wp_enqueue_scripts', array($this, 'generate_paga_checkout_widget'));
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
         
         add_action('admin_notices', array($this, 'admin_notices'));
@@ -118,6 +117,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
      /**
          * Check if the gateway is enabled and available for user's country.
+         * @version 1.0.0
+         * @since 1.0.0
          */
 
         public function is_valid_for_use()
@@ -133,8 +134,9 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
         /**
          * Display pagacheckout payment icon
+         * @version 1.0.0
+         * @since 1.0.0
          */
-
         public function get_icon()
         {
             $icon = '<img src="' .WC_HTTPS::force_https_url(plugins_url('assets/images/pay-with-paga.png', PAGA_CHECKOUT_MAIN_FILE)).'" alt="cards"/>';
@@ -143,6 +145,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
         /**
          * Check if Paga Checkout merchant details is filled.
+         * @version 1.0,0
+         * @since 1.0.0
          */
 
         public function admin_notices()
@@ -161,7 +165,9 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
         
          /**
           * Check if Paga Checkout is enabled
-          * 
+          * @version 1.0.0
+          * @since 1.0.0
+          *
           * @return bool
           */
          public function is_available ()
@@ -177,6 +183,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
          /**
           * Admin Panel Options
+          * @version 1.0.0
+          * @since 1.0.0
           */
 
           public function admin_options()
@@ -206,6 +214,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
           /**
            * Initialise Paga Checkout Settings Form Fields.
+           * @version 1.0.0
+           * @since 1.0.0
            */
           public function init_form_fields()
           {
@@ -286,7 +296,11 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
                   $this->form_fields=$form_fields;
           } 
 
-
+          /**
+           * Generate paga-checkout-form
+           * @since 1.0.0
+           * @version 1.0.0
+           */
           public function generate_paga_checkout_widget() {
               if (!is_checkout_pay_page()) {
                   return;
@@ -356,6 +370,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
           /**
            * Process the payment and return the result
+           * @since1.0.0
+           * @version 1.0.0
            * 
            * @param int $order_id
            * 
@@ -374,6 +390,9 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
            /**
             * Load admin scripts
+            * @since 1.0.0
+            * @version 1.0.0
+            *@
             */
             public function admin_scripts() {
 
@@ -389,6 +408,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
             /**
              * Add extra css styling
+             * @since 1.0.0
+             * @version 1.0.0
              */
             function load_admin_style() {
                 wp_register_style('custom-styles', plugins_url( 'assets/css/paga-checkout' . '.css', PAGA_CHECKOUT_MAIN_FILE ));
@@ -396,19 +417,11 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
                 wp_enqueue_style('custom-styles');
              }
 
-           /**
-            * Display the payment page
-            * @param $order_id
-            */
-        //    public function receipt_page($order_id) {
-        //        $order = wc_get_order($order_id);
-        //        echo '<p id="end-note">'.__('Thank you for your order, please click the button to pay with Paga.', 'paga-checkout').'</p>';
-        //     //    echo $this->generate_paga_form( $order );
-        //    }
-
 
            /**
             * Verify Paga Checkout  payment
+            *@since 1.0.0
+            *@version 1.0.0
             */
 
            public function verify_paga_checkout_transaction() {
