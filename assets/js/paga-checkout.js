@@ -10,8 +10,6 @@ function checkoutForm() {
     for (let index = 0; index < attributeValues.length; index++) {
         scriptTag.setAttribute(attributeKeys[index],attributeValues[index]);
     }
-    console.log(scriptTag);
-
     pagaForm.appendChild(scriptTag);
     embedCheckout.appendChild(pagaForm);
 
