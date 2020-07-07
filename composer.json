@@ -1,0 +1,21 @@
+{
+    "name": "YourGithubUsername/example-plugin",
+    "description": "The one plugin for making online payments which embedded to your woocommerce site. PagaCheckout payment geteway provides an easy-to-integrate payment collection tool for any online merchant.",
+    "keywords": ["wordpress", "plugin", "woocommerce", "custom-payment-gateway","paga"],
+    "homepage": "https://www.paga.dev/",
+    "authors": [
+        {
+            "name": "Paga Developer Team",
+            "email": "devcomm@paga.com",
+            "homepage": "https://github.com/pagadevcomm/paga-checkout-for-woocommerce",
+            "role": "Developer"
+        }
+    ],
+    "type": "wordpress-plugin",
+    "require": {
+      "php": ">=5.6"
+    },
+    "support": {
+        "issues": "https://github.com/pagadevcomm/paga-checkout-for-woocommerce/issues"
+      }
+  }
