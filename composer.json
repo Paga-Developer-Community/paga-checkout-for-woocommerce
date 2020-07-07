@@ -11,6 +11,10 @@
             "role": "Developer"
         }
     ],
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+      ],
     "type": "wordpress-plugin",
     "require": {
       "php": ">=5.6"
