@@ -349,7 +349,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
             
 
             if($this->testmode) {
-                $paga_checkout_params['checkout']  = esc_url_raw('https://beta.mypaga.com/checkout/');
+                // $paga_checkout_params['checkout']  = esc_url_raw('https://beta.mypaga.com/checkout/');
+                $paga_checkout_params['checkout']  = esc_url_raw('http://localhost:8080/checkout/');
             } else {
                 $paga_checkout_params['checkout']  = esc_url_raw('https://www.mypaga.com/checkout/');
             }
@@ -430,7 +431,7 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 			if ( isset( $_REQUEST['paga_checkout_txnref'] ) ){
 
 				if($this->testmode) {
-					$verify_url = esc_url('https://beta.mypaga.com/checkout/transaction/verify'); 
+					$verify_url = esc_url('http://localhost:8080/checkout/transaction/verify'); 
 				} else {
 					$verify_url = esc_url('https://www.mypaga.com/checkout/transaction/verify'); 
 				}
