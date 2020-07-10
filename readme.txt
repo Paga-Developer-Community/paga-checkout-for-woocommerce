@@ -1,10 +1,10 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+=== PagaCheckout for WooCommerce===
+Contributors: pagadevcomm
 Donate link: https://www.mypaga.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tags: wooCommerce, paga, express checkout, payment, cards, bank
+Requires at least: 5.0
+Tested up to: 5.4.2
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,103 +12,84 @@ Here is a short description of the plugin.  This should be no more than 150 char
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This is a PagaCheckout payment gateway for WooCommerce.
+Paga solves two key problems that exist around the world - eliminating the use of cash for transactions and access to financial services. 
+PagaCheckout payment gateway provides an easy-to-integrate payment collection tool for any online
+merchant. It supports multiple customer funding sources including cards, bank accounts and ​[paga](https://www.mypaga.com/)
+wallet​.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
 
-A few notes about the sections above:
+With this PagaCheckout WooCommerce Payment Gateway plugin, you will be able to accept the following payment methods in your shop:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+* __Paga__
+* __Mastercard__
+* __Visa__
+* __Verve__
+* __Bank Account__
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+= Note =
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+This plugin is meant to be used by merchants in Nigeria.
+
+= Plugin Features =
+
+*   __Accept payment__ via Paga, Mastercard, Visa, Verve, Bank Accounts.
+*   __Seamless integration__ into the WooCommerce checkout page. Accept payment directly on your site
+
+
+= Suggestions / Feature Request =
+
+If you have suggestions or a new feature request, feel free to get in touch with me via the contact form on my website [here](https://www.paga.dev/)
+
+You can also follow us on Twitter! **[@PagaDeveloper](https://twitter.com/pagadeveloper)**
+
+
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+= Manual Installation =
+1. 	Download the plugin zip file from [Github](https://github.com/pagadevcomm/paga-checkout-for-woocommerce) or [composer](https://packagist.org/packages/pagadevcomm/paga-checkout-for-woocommerce) by running composer require pagadevcomm/paga-checkout-for-woocommerce
+2. 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
+3.  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
+4.  Activate the plugin.
+5. 	Open the settings page for WooCommerce and click the "Checkout" tab.
+6. 	Click on the __PagaCheckout__ link from the available Checkout Options
+7.	Configure your __PagaCheckout payment plugin__ settings. See below for details.
 
-e.g.
 
-1. Upload `paga-checkout.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+= Configure the plugin =
+To configure the plugin, go to __WooCommerce > Settings__ from the left hand menu, then click __Payment__ from the top tab. You will see __PagaCheckout__ as part of the available Payment methods. Click on it to configure the payment gateway.
+
+* __Enable/Disable__ - check the box to enable PagaCheckout.
+* __Description__ - controls the message that appears under the payment fields on the checkout page. Here you can list the types of cards you accept.
+* __Test Mode__ - Check to enable test mode. Test mode enables you to test payments before going live. If you ready to start receving real payment on your site, kindly uncheck this.
+* __Test Secret Key__ - Enter your Test Secret Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* __Test Public Key__ - Enter your Test Public Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* __Live Secret Key__ - Enter your Live Secret Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* __Live Public Key__ - Enter your Live Public Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* Click on __Save Changes__ for the changes you made to be effected.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= What Do I Need To Use The Plugin =
 
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
+1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
+2.	You need to open a Paga Business account on [Paga](https://www.mypaga.com/paga-business/register.paga), for test business account click [here]((https://beta.mypaga.com/paga-business/register.paga))
 
 == Screenshots ==
+![PagaCheckout WooCommerce Payment Gateway Setting Page](/assets/images/paga-checkout-setting-page.png)
+![PagaCheckout WooCommerce Payment Gateway on Payment page](/assets/images/paga-checkout-payment-page.png)
+![PagaCheckout WooCommerce Payment Gateway on Checkout page](/assets/images/paga-checkout-on-checkout-page.png)
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
 
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* First release
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
 
-== Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
 
-== Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
 
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
