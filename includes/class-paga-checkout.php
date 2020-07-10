@@ -55,12 +55,12 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
     function __construct() 
     {
         $this->id  = 'paga-checkout';
-        $this->icon = apply_filters('woocommerce_paga_icon', plugins_url( 'assets/pay-with-paga.png' , __FILE__ ) );
+        $this->icon = apply_filters('woocommerce_paga_icon', trailingslashit(plugins_url( 'assets/pay-with-paga.png' , __FILE__ ) ));
         $this->has_fields = false;
-        $this->method_title = __('Pay with Paga ', 'paga-checkout');
+        $this->method_title = __('PagaCheckout ', 'paga-checkout');
         $this->method_description=sprintf(
-            __('Paga Checkout provides an easy-to-integrate payment collection tool for any online merchant. It supports funding sources from Cards, Bank accounts and Paga wallet.<a href="%1$s" target="_blank">Sign up</a> for a Paga account, and <a href="%2$s" target="_blank">get your paga-checkout credentials</a>.', 'paga-checkout'),'https://www.mypaga.com/', 
-            'https://www.mypaga.com/paga-business/register.paga'
+            __('Paga Checkout provides an easy-to-integrate payment collection tool for any online merchant. It supports funding sources from Cards, Bank accounts and Paga wallet.<a href="%1$s" target="_blank">Sign up</a> for a Paga account, and <a href="%2$s" target="_blank">get your paga-checkout credentials</a>.', 'paga-checkout'),esc_url('https://www.mypaga.com/'), 
+            esc_url('https://www.mypaga.com/paga-business/register.paga')
         );
         $this->has_fields = true;
 
@@ -310,16 +310,16 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
                   return;
               }
               
-              $order_key = urldecode($_GET['key']);
+              $order_key = isset($_GET['key']) ? wc_clean(wp_unslash($_GET['key'])) : '';
               $order_id = absint(get_query_var('order-pay'));
               $order = wc_get_order($order_id);
 
          
 
             $paga_checkout_params = array(
-                'public_key' => $this->public_key,
+                'public_key' => isset($this->public_key) ? $this->public_key : '',
                 'paga_checkout_display_name' => isset($this->paga_checkout_display_name) ? $this->paga_checkout_display_name : 'Grade Gall',
-                'charge_url'=> $this->charge_url,
+                'charge_url'=> isset($this->charge_url) ? esc_url_raw($this->charge_url): '',
                 'display_image_url' => (isset($this->display_image_url) && !($this->display_image_url === '')) ? $this->display_image_url : esc_url_raw('https://cdn-assets-cloud.frontify.com/local/frontify/eyJwYXRoIjoiXC9wdWJsaWNcL3VwbG9hZFwvc2NyZWVuc1wvMTgzMDM4XC8wYWU2ODA0MmE5ZWU2OWUwMmE2YjlkOWRhZjdhNDhjMS0xNTQxNzYxMDM1LnBuZyJ9:frontify:bbSWcJvMlA_jz0c7aiHQ8wDCc-XjuUIQWdhxRXA-ROs?width=2400'),
                 'display_tagline' =>(isset($this->display_tagline) && !($this->display_tagline === '') ) ? $this->display_tagline: __('')
                 
@@ -327,7 +327,7 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 
 
             if (is_checkout_pay_page() && get_query_var('order-pay')) {
-                $email      = method_exists($order,'get_billing_email') ? $order->get_billing_email() : $order->billing_email;
+                $email      = method_exists($order,'get_billing_email') ? $order->get_billing_email() : sanitize_email($order->billing_email);
                 $phone_number= method_exists($order,'get_billing_phone') ? $order->get_billing_phone() : $order->get_billing_phone;
                 $amount     = method_exists($order,'get_total') ?  $order->get_total():$order->order_total;
                 $txnref     = $order_id .'_' .time();
@@ -349,8 +349,8 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
             
 
             if($this->testmode) {
-                // $paga_checkout_params['checkout']  = esc_url_raw('https://beta.mypaga.com/checkout/');
-                $paga_checkout_params['checkout']  = esc_url_raw('http://localhost:8080/checkout/');
+                $paga_checkout_params['checkout']  = esc_url_raw('https://beta.mypaga.com/checkout/');
+                // $paga_checkout_params['checkout']  = esc_url_raw('http://localhost:8080/checkout/');
             } else {
                 $paga_checkout_params['checkout']  = esc_url_raw('https://www.mypaga.com/checkout/');
             }
@@ -431,12 +431,13 @@ class WC_Paga_Checkout extends WC_Payment_Gateway {
 			if ( isset( $_REQUEST['paga_checkout_txnref'] ) ){
 
 				if($this->testmode) {
-					$verify_url = esc_url('http://localhost:8080/checkout/transaction/verify'); 
+                    // $verify_url = esc_url('http://localhost:8080/checkout/transaction/verify'); 
+                    $verify_url = esc_url('http://beta.mypaga.com/checkout/transaction/verify'); 
 				} else {
 					$verify_url = esc_url('https://www.mypaga.com/checkout/transaction/verify'); 
 				}
 				
-				$paga_trans_ref =  empty($_REQUEST['paga_checkout_txnref']) ? '' : $_REQUEST['paga_checkout_txnref'];
+				$paga_trans_ref =  empty(wc_clean($_REQUEST['paga_checkout_txnref'])) ? '' : wc_clean($_REQUEST['paga_checkout_txnref']);
 
 				$order_details 	= explode( '_',  $paga_trans_ref);
 
