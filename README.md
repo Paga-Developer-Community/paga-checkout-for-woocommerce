@@ -8,7 +8,7 @@
 - License: GPLv3
 - License URI: http://www.gnu.org/licenses/gpl-3.0.html
  
-The one plugin for making online payments which embedded to your woocommerce site. PagaCheckout payment geteway provides
+The one plugin for making online payments which is embedded to your woocommerce site. PagaCheckout payment geteway provides
 an easy-to-integrate payment collection tool for any online merchant.
  
 ## Description
