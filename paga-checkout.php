@@ -16,8 +16,8 @@
  * Plugin Name:       Paga Checkout
  * Plugin URI:        https://github.com/pagadevcomm/wc-pagaCheckout
  * Description:       Paga Checkout for accepting online payments.
- * Version:           1.0.0
- * Author:            Pagdevcomm
+ * Version:           1.0.3
+ * Author:            Paga
  * Author URI:        https://www.mypaga.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
