@@ -4,7 +4,7 @@ Donate link: https://www.mypaga.com/
 Tags: wooCommerce, Paga, express checkout, payment, cards, bank, e-commerce, commerce, woothemes, WordPress e-commerce, store, sales, sell, shop, shopping, cart, checkout,
 Requires at least: PHP: >=5.0.0
 Tested up to: 5.7.1
-Stable tag: 1.0.3
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,8 +61,9 @@ To configure the plugin, go to __WooCommerce > Settings__ from the left hand me
 * __Description__ - controls the message that appears under the payment fields on the checkout page. Here you can list the types of cards you accept.
 * __Test Mode__ - Check to enable test mode. Test mode enables you to test payments before going live. If you ready to start receving real payment on your site, kindly uncheck this.
 * __Test Public Key__ - Enter your Test Public Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* __Live Public Key__ - Enter your Live Public Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
+* __Test Secret Key__ - Enter your Test Secret Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
 * __Live Secret Key__ - Enter your Live Secret Key here. Get your API keys from your Paga Business account. For more details check the [Documentation](https://developer-docs.paga.com/docs/overview)
-* __Data Charge url__ - Enter Url to redirect after successful transaction
 * Click on __Save Changes__ for the changes you made to be effected.
 
 == Frequently Asked Questions ==
@@ -89,6 +90,16 @@ To configure the plugin, go to __WooCommerce > Settings__ from the left hand me
 = 1.0.3 =
 * Updated the Paga checkout plugin Documentation
 
+= 1.0.4 =
+* Updated the taglines a customers sees when they want to make payment
+
+= 1.0.5 =
+* Fixed the bug to display a tagline when selecting a payment method if the tagline is not specified in the plugin setting.
+
+= 2.0.0 =
+* Implmented transaction verification after payment.
+* Implemented updating order status after the verifying that the transaction was successful.
+* Added field to provide secret key in the plugin admin setting and removed the charge url field .
 
 == Screenshots ==
 1. PagaCheckout WooCommerce Payment Gateway Setting Page
